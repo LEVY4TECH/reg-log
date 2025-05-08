@@ -15,7 +15,7 @@
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">name</label>
             <input type="text" class="form-control" id="exampleInputEmail1" name="name">
-            
+
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">email</label>
@@ -29,9 +29,40 @@
             <label for="exampleInputPassword1" class="form-label">password</label>
             <input type="password" class="form-control" id="exampleInputPassword1" name="pass">
         </div>
-       
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    <div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="toast align-items-center text-white bg-{{ 'success' if category == 'success' else 'danger' if category == 'danger' else 'warning' }} border-0 show"
+                role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{ message }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+
+
+        <div>
+            <script>
+                const toastElList = document.querySelectorAll('.toast');
+                toastElList.forEach(toastEl => {
+                    new bootstrap.Toast(toastEl).show();
+                });
+            </script>
+        </div>
+    </div>
 
 
 
