@@ -43,5 +43,8 @@ def login():
                 print('wrong password')
     return render_template('login.html')
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
 
 app.run(debug=True)
